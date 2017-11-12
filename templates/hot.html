@@ -18,7 +18,7 @@
           <ul>
             <li>
               {% if page.has_previous %}
-                  <a href="{% url 'hot' page.previous_page_number %}">previous</a>
+                  <a href="{% url 'hot' %}?page={{ page.previous_page_number }}">previous</a>
               {% endif %}
             </li>
             <li>
@@ -26,7 +26,7 @@
             </li>
             <li>
               {% if page.has_next %}
-                  <a href="{% url 'hot' page.next_page_number %}">next</a>
+                  <a href="{% url 'hot' %}?page={{ page.next_page_number }}">next</a>
               {% endif %}
             </li>
           </ul>

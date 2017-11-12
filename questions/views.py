@@ -21,7 +21,10 @@ def test_gu(request):
 class AboutView(TemplateView):
    template_name = "about.html"
 
-def paginate(objects, request, page_num):
+def paginate(objects, request):
+    page_num = 1
+    if request.method == 'GET':
+        page_num = int(request.GET.get('page', '1'))
     p = Paginator(objects, 20)
     try:
         pageN = p.page(page_num)
@@ -34,9 +37,7 @@ def paginate(objects, request, page_num):
 
 # Create your views here.
 
-def index(request, page_num):
-    if not page_num:
-        page_num = 1
+def index(request):
     ctx = dict()
     qlist = list()
     tags = lorem.words(5)
@@ -48,14 +49,12 @@ def index(request, page_num):
             'text': lorem.sentences(3),
             'tags': tags[0:2],
         })
-    page_qlist, pageN = paginate(qlist, request, page_num)
+    page_qlist, pageN = paginate(qlist, request)
     ctx['questions'] = page_qlist
     ctx['page'] = pageN
     return render(request, 'index.html', ctx)
 
-def hot(request, page_num):
-    if not page_num:
-        page_num = 1
+def hot(request):
     ctx = dict()
     qlist = list()
     tags = lorem.words(5)
@@ -67,14 +66,12 @@ def hot(request, page_num):
             'text': lorem.sentences(3),
             'tags': tags[0:2],
         })
-    page_qlist, pageN = paginate(qlist, request, page_num)
+    page_qlist, pageN = paginate(qlist, request)
     ctx['questions'] = page_qlist
     ctx['page'] = pageN
     return render(request, 'hot.html', ctx)
 
-def tag(request, tag_word, page_num):
-    if not page_num:
-        page_num = 1
+def tag(request, tag_word):
     ctx = dict()
     qlist = list()
     tags = lorem.words(5)
@@ -86,7 +83,7 @@ def tag(request, tag_word, page_num):
             'text': lorem.sentences(3),
             'tags': tags[0:2],
         })
-    page_qlist, pageN = paginate(qlist, request, page_num)
+    page_qlist, pageN = paginate(qlist, request)
     ctx['page'] = pageN
     ctx['questions'] = page_qlist
     ctx['tag_word'] = tag_word

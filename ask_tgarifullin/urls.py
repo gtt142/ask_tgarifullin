@@ -22,15 +22,14 @@ def err404(request):
 
 urlpatterns = [
     url(r'^test_gunicorn/?$', views.test_gu),
-    url(r'^/?(?P<page_num>[0-9]+)?/?$', views.index, name='index'),
-    url(r'^hot/(?P<page_num>[0-9]+)?/?$', views.hot, name='hot'),
+    url(r'^/?$', views.index, name='index'),
+    url(r'^hot/?$', views.hot, name='hot'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^signin/$', views.signin, name='signin'),
     url(r'^admin/', admin.site.urls),
     url(r'^question/', include('questions.urls')),
-#    url(r'onequestion/?', include('questions.urls')),
     url(r'^userset/', views.userset, name='userset'),
     url(r'^ask/', views.ask, name='ask'),
-    url(r'^tag/(?P<tag_word>\w+)/(?P<page_num>[0-9]+)?/?$', views.tag, name='tag_detail'),
+    url(r'^tag/(?P<tag_word>\w+)/$', views.tag, name='tag_detail'),
     url(r'^', err404),
 ]

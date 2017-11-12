@@ -19,7 +19,7 @@
           <ul>
             <li>
               {% if page.has_previous %}
-                  <a href="{% url 'index' page.previous_page_number %}">previous</a>
+                  <a href="{% url 'index' %}?page={{ page.previous_page_number }}">previous</a>
               {% endif %}
             </li>
             <li>
@@ -27,7 +27,7 @@
             </li>
             <li>
               {% if page.has_next %}
-                  <a href="{% url 'index' page.next_page_number %}">next</a>
+                  <a href="{% url 'index' %}?page={{ page.next_page_number }}">next</a>
               {% endif %}
             </li>
           </ul>

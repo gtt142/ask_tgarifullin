@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/offcanvas/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="shortcut icon" href="./icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <link rel="icon" href="/static/img/icon.png">
 
-    <title>ASK.me</title>
+    <title>{% block title %}My amazing site{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./my_style.css" rel="stylesheet">
+    <link href="/static/css/my_style.css" rel="stylesheet">
   </head>
 
 
@@ -21,7 +20,7 @@
   <body>
 
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-      <a class="navbar-brand" href="http://localhost">ASK.me</a>
+      <a class="navbar-brand" href="{% url 'index' %}">ASK.me</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,9 +32,12 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         </ul>
+        <ul class="navbar-nav mr-auto">
+          <a href="{% url 'ask' %}" class="btn-ask">Ask!</a>
+        </ul>
       </div>
       <div class="col-md-3">
-          <img src="./ym8.jpg" width="50" height="50" alt="ava" class="ava">
+          <img src="/static/img/ym8.jpg" width="50" height="50" alt="ava" class="ava">
           <a href="#" class="myLogin">UName</a>
           <a href="#" class="myLogin">Exit</a>
       </div>
@@ -46,6 +48,8 @@
       <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-12 col-md-9">
+
+          {% block content %} {% endblock %}
 
         </div><!--/span-->
 		<aside class="col-sm-3 ml-sm-auto blog-sidebar">
