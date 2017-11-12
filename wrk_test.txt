@@ -1,0 +1,56 @@
+_____________________________________________________________
+Отдача статического документа через nginx
+
+Running 5s test @ http://localhost/static/hello.html
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.14ms    2.87ms  32.74ms   91.90%
+    Req/Sec     4.37k     1.15k    9.52k    71.88%
+  219691 requests in 5.10s, 70.81MB read
+Requests/sec:  43086.44
+Transfer/sec:     13.89MB
+_____________________________________________________________
+Отдача статического документа через gunicorn
+
+Running 5s test @ http://localhost:8081
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     3.83ms  345.42us   9.00ms   98.39%
+    Req/Sec   257.25     18.51   272.00     95.62%
+  12871 requests in 5.10s, 2.57MB read
+Requests/sec:   2523.68
+Transfer/sec:    515.09KB
+_____________________________________________________________
+Отдача динамического документа напрямую через gunicorn
+
+Running 5s test @ http://127.0.0.1:8000
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   502.18ms   94.68ms 609.34ms   84.04%
+    Req/Sec     1.81      1.11    10.00     94.68%
+  94 requests in 5.01s, 4.95MB read
+  Non-2xx or 3xx responses: 94
+Requests/sec:     18.77
+Transfer/sec:      0.99MB
+_____________________________________________________________
+Отдача динамического документа через проксирование запроса с nginx на gunicorn
+
+Running 5s test @ http://localhost
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   836.36ms  190.31ms 927.39ms   87.04%
+    Req/Sec     1.11      0.74     5.00     83.33%
+  54 requests in 5.01s, 2.00MB read
+Requests/sec:     10.79
+Transfer/sec:    409.22KB
+_____________________________________________________________
+Отдача динамического документа через проксирование запроса с nginx на gunicorn, при кэшировние ответа на nginx (proxy cache)
+
+Running 5s test @ http://localhost
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    30.20ms  122.25ms   1.03s    93.94%
+    Req/Sec     3.36k     0.92k   11.81k    78.75%
+  151993 requests in 5.10s, 5.48GB read
+Requests/sec:  29812.29
+Transfer/sec:      1.08GB
