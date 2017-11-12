@@ -3,10 +3,20 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 
+from cgi import parse_qsl
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from faker import lorem
 from random import shuffle
+
+def test_gu(request):
+    msg = ' '
+    if request.method == 'GET':
+        msg = request.GET.get('test', '')
+    if request.method == 'POST':
+        msg = request.POST.get('test', '')
+    return render(request, 'test_gu.html', {'text': msg})
 
 class AboutView(TemplateView):
    template_name = "about.html"

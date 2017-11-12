@@ -21,6 +21,7 @@ def err404(request):
 	raise Http404("PageNotFound")
 
 urlpatterns = [
+    url(r'^test_gunicorn/?$', views.test_gu),
     url(r'^/?(?P<page_num>[0-9]+)?/?$', views.index, name='index'),
     url(r'^hot/(?P<page_num>[0-9]+)?/?$', views.hot, name='hot'),
     url(r'^signup/$', views.signup, name='signup'),
