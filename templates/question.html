@@ -1,0 +1,35 @@
+          <article class="lmarg20">
+            <header>
+              <h1><u><a href="{% url 'question_detail' question.idx %}">{{ question.title }}</a></u></h1>
+            </header>
+            <div class="row">
+              <div class='col-md-3 col-sm-12 quest_img'>
+                  <img src="/static/img/ym8.jpg">
+              </div> 
+              <div class='col-md-9 col-sm-12 quest_text'>
+                {{ question.text }}
+              </div>
+            </div>
+            <div class="foot">
+              <div class="quest_foot">
+               <div class="row" style="margin-left: 15px">
+                  <div class="col-md-3 col-sm-12 ">
+                    <form action=" " method="GET">
+                      <div class="row rating">
+                       <div class="col-4 ratCell"><button><img src="/static/img/plus.ico" width="100%"></button></div>
+                       <div class="col-4 ratCell">41</div>
+                       <div class="col-4 ratCell"><button><img src="/static/img/minus.ico" width="100%"></button></div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-3 col-sm-12"><a href="#">answer (3)</a></div>
+                 <div class="col-md-6 col-sm-12">Tags: 
+                    {% for tag in question.tags %}
+                        <a href="{% url 'tag_detail' tag %}">{{ tag }}</a>
+                    {% endfor %}
+                 </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </article>

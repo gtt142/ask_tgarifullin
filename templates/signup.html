@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+          <div class="new_quest">
+            <h1>Registration</h1>
+            <form action=" " method="POST">
+             <div class="forma"> 
+              <div class="row regPoint">
+                <div class="col-md-3">Login:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="login" required size="30" maxlength="20">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">E-mail:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="email" required size="30" maxlength="30">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">NickName:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="nick" required size="30" maxlength="20">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">Password:</div>
+                <div class="col-md-9">
+                  <input class="border" type="password" name="password1" required size="30" maxlength="30">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">Repeat password:</div>
+                <div class="col-md-9">
+                  <input class="border" type="password" name="password2" required size="30" maxlength="30">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">Upload avatar:</div>
+                <div class="col-md-9">
+                  <input class="border" type="file" name="avatar_upl" accept="image/*,image/jpeg">
+                </div>
+              </div>
+
+              <div class="questButt">
+                <button class="submit">
+                  Зарегестрироваться
+                </button>
+              </div>
+              </div>
+              </form>
+          </div>
+
+{% endblock %}

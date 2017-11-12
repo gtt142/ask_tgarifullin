@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %} Question {{q_id}} {% endblock %}
+
+{% block content %}
+
+        <article class="lmarg20">
+            {% for q in question %} 
+            <header>
+              <h1 class="one_question"><u>Заголовок {{ q.idx }}</u></h1>
+            </header>
+            <div class="row">
+              <div class='col-12 col-md-3 quest'>
+                <img src="/static/img/ym8.jpg" width="90%">
+              </div> 
+              <div class='col-12 col-md-9'>
+                {{ q.text }}
+              </div>
+            </div>
+            <div class="foot">
+              <div class="quest_foot">
+               <div class="row" style="margin-left: 15px; margin-top: 5px; display: flex;">
+                  <div class="col-md-3 col-sm-12 ">
+                    <form action=" " method="GET">
+                      <div class="row rating">
+                       <div class="col-md-4 ratCell"><button><img src="/static/img/plus.ico" width="100%"></button></div>
+                       <div class="col-md-4 ratCell">41</div>
+                       <div class="col-md-4 ratCell"><button><img src="/static/img/minus.ico" width="100%"></button></div>
+                      </div>
+                    </form>
+                  </div>
+                 <div class="col-md-9 col-sm-12">Tags:  {% for tag in q.tags %}
+                              <a href="{% url 'tag_detail' tag %}">{{ tag }}</a>
+                            {% endfor %}</div>
+                </div>
+              </footer>
+            </div>
+            <hr>
+            {% endfor %}
+          </article>
+          <div class="answers">
+              
+              {% for answer in answers %}
+                  {% include "answer.html" %}
+              {% endfor %}
+
+          </div>
+
+          <hr class="my_hr">
+            <div class="new_answer">
+            <form action=" " method="POST">
+             <div class="forma"> 
+              <div class="row regPoint">
+                <div class="col-md-9">
+                   <textarea name="comment" cols="100" rows="6" required class="border"></textarea>
+                </div>
+              </div>
+
+              <div class="answ_btn">
+                <button class="submit">
+                  Ответить
+                </button>
+              </div>
+              </div>
+              </form>
+          </div>
+
+
+{% endblock %}

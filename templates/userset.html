@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+          <div class="new_quest">
+            <h1>Setting: MrCat</h1>
+            <form action=" " method="POST">
+             <div class="forma"> 
+              <div class="row regPoint">
+                <div class="col-md-3">Login:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="login" size="30" maxlength="20">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">E-mail:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="email" size="30" maxlength="30">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">NickName:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="nick" size="30" maxlength="20">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">Upload avatar:</div>
+                <div class="col-md-9">
+                  <img src="/static/img/ym8.jpg" width="25%" alt="ava_now">
+                  <br><br>
+                  <input class="border" type="file" name="avatar_upl" accept="image/*,image/jpeg">
+                </div>
+              </div>
+
+              <div class="questButt">
+                <button class="submit">
+                  Отправить
+                </button>
+              </div>
+              </div>
+              </form>
+          </div>
+
+{% endblock %}

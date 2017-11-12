@@ -1,0 +1,222 @@
+.mr-auto {
+    margin-right: 25px !important;
+}
+
+.btn-ask {
+	padding: 7px 20px 7px 20px;
+	background: #1FAEE9;
+	font-family: "Arial";
+	color: #ffffff;
+	border-radius: 3px;
+	text-decoration: none;
+}
+a.btn-ask:active, /* активная/посещенная ссылка */
+a.btn-ask {
+  text-decoration: none;
+}
+a.btn-ask:hover{
+	padding: 7px 20px 7px 20px;
+	background: #FFFFFF;
+	font-family: "Arial";
+	color: #1FAEE9;
+	border-radius: 3px;
+	text-decoration: none;
+}  /* при наведении */
+
+
+a.navbar-brand {
+	font-family: "Сomic Sans MS";
+	font-size: 20pt;
+	color: #1FAEE9 !important;
+}
+form.mySearch {
+	margin-left: 10px;
+}
+
+.mymarg {
+	margin-top: 85px;
+}
+
+a.firstPlace {
+	color: green;
+	font-size: 32px;
+}
+
+a.secondPlace {
+	color: yellow;
+	font-size: 26px;
+}
+
+a.thirdPlace {
+	color: red;
+	font-size: 20px;
+}
+
+a.otherPlace {
+	color: blue
+	font-size: 16px;
+}
+
+main.container-fluid {
+	width: 98%;
+}
+
+a.myLogin {
+	font-size: 16pt;
+	color: #1FAEE9;
+	margin-left: 20px;
+}
+
+img.ava {
+	margin-right: 00px;
+    border-radius: 100%;
+}
+
+.lmarg20 {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: 20px;
+	margin-bottom: 15px;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.lmarg20 hr {
+	height: 3px;
+	width: 100%;
+	background-color: #AAA;
+}
+.lmarg20 h1 {
+	margin-left: 10px;
+}
+
+div.quest_text {
+	padding: 10px;
+}
+
+div.quest_img {
+	min-height: 100px;
+}
+
+.quest_img img {
+	display: block;
+	width: 100px;
+    border-radius: 100%;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+
+.quest_foot li{
+	margin: 5px;
+	display: block;
+	min-width: 100px;
+	float: left;
+	list-style-type: none;
+}
+
+div.rating {
+	width: 100px;
+	background: #e6e6e6;
+	margin-right: 20px;
+}
+
+div.ratCell {	
+	border: 1px solid #999999;
+	text-align: center;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+
+div.new_quest h1{
+	text-align: center;
+	color: #1FAEE9;
+
+}
+div.inp {
+	display: inline;
+	position: relative;
+	left: 100px;
+}
+.border {
+	border-width: 5px;
+	border-radius: 10px;
+}
+div.newQ {
+	font-style: "Times";
+	margin: 15px;
+}
+div.questButt {
+	text-align: center;
+}
+button.submit {
+	margin: 15px;
+	padding: 10px;
+	background: #1FAEE9;
+	opacity: .7;
+    border: 0;
+}
+.regPoint {
+	margin: 15px;
+}
+
+div.answers {
+	margin-left: 120px;
+}
+div.answer {
+	margin-top: 15px;
+	padding: 15px;
+	border-style: solid;
+	border-width: 2px;
+}
+.correct_ans{
+	font-size: 14pt;
+	float: right;
+}
+
+div.new_answer {
+
+}
+.answ_btn{
+	margin-left: 30px;
+}
+
+hr.my_hr {
+	height: 3px;
+	width: 100%;
+	background-color: #AAA;
+}
+
+.HotQ {
+	padding-top: 10px;
+	font-size: 14pt;
+}
+
+div.quest_head {
+	margin: 15px;
+}
+
+.blog-sidebar {
+	position: fixed;
+	top: 100px;
+	right: 0px;
+}
+
+div.pages li{
+	margin: 10px;
+	font-size: 16pt;
+	display: block;
+	float: left;
+	list-style-type: none;
+}
+
+h1.one_question {
+	color: #1FAEE9;
+	font-style: italic;
+	font-size: 36pt;
+	text-align: center;
+}

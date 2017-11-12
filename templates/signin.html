@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+          <div class="new_quest">
+            <h1>Sign In</h1>
+            <form action=" " method="POST">
+             <div class="forma"> 
+              <div class="row regPoint">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">Login:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="login" required size="30" maxlength="10">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">Password:</div>
+                <div class="col-md-9">
+                  <input class="border" type="password" name="password" required size="30" maxlength="10">
+                </div>
+              </div>
+      {% csrf_token %}
+              <div class="questButt">
+                <button class="submit">
+                  Войти
+                </button>
+              </div>
+              <div class="row regPoint"><div class="col-md-3"></div><div class="col-md-9"> <a href="/signup">Зарегестрироваться</a> </div></div>
+              </div>
+              </form>
+          </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+          <div class="new_quest">
+            <h1>New Question</h1>
+            <form action=" " method="POST">
+             <div class="forma"> 
+              <div class="row regPoint">
+                <div class="col-md-3">Title:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" name="title" required size="50" maxlength="20">
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">Text:</div>
+                <div class="col-md-9">
+                   <textarea name="comment" cols="60" rows="6" required class="border" maxlength="500"></textarea>
+                </div>
+              </div>
+              <div class="row regPoint">
+                <div class="col-md-3">Tags:</div>
+                <div class="col-md-9">
+                  <input class="border" type="text" required name="tags" size="50" maxlength="10">
+                </div>
+              </div>
+
+              <div class="questButt">
+                <button class="submit">
+                  Отправить вопрос
+                </button>
+              </div>
+              </div>
+              </form>
+          </div>
+
+
+{% endblock %}
