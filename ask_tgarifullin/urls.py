@@ -22,8 +22,8 @@ def err404(request):
 
 urlpatterns = [
     url(r'^test_gunicorn/?$', views.test_gu),
-    url(r'^/?$', views.index, name='index'),
-    url(r'^hot/?$', views.hot, name='hot'),
+    url(r'^$', views.index, name='index'),
+    url(r'^hot/$', views.hot, name='hot'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^signin/$', views.signin, name='signin'),
     url(r'^admin/', admin.site.urls),

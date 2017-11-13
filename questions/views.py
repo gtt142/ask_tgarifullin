@@ -1,9 +1,8 @@
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
+from questions.models import Question
 from django.http import HttpResponse
-
-from cgi import parse_qsl
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -18,14 +17,14 @@ def test_gu(request):
         msg = request.POST.get('test', '')
     return render(request, 'test_gu.html', {'text': msg})
 
-class AboutView(TemplateView):
-   template_name = "about.html"
+
 
 def paginate(objects, request):
-    page_num = 1
     if request.method == 'GET':
-        page_num = int(request.GET.get('page', '1'))
-    p = Paginator(objects, 20)
+        page_num = int(request.GET.get('page', 1))
+        limit = int(request.GET.get('limit', 5))
+    p = Paginator(objects, limit)
+    p.limiturl = 'limit='+str(limit)
     try:
         pageN = p.page(page_num)
     except PageNotAnInteger:
@@ -38,78 +37,23 @@ def paginate(objects, request):
 # Create your views here.
 
 def index(request):
-    ctx = dict()
-    qlist = list()
-    tags = lorem.words(5)
-    for i in range(1,71):
-        shuffle(tags)
-        qlist.append({
-            'idx': i,
-            'title': ' '.join(lorem.words(3)).title(),
-            'text': lorem.sentences(3),
-            'tags': tags[0:2],
-        })
+    qlist = Question.objects.new_questions()
     page_qlist, pageN = paginate(qlist, request)
-    ctx['questions'] = page_qlist
-    ctx['page'] = pageN
-    return render(request, 'index.html', ctx)
+    return render(request, 'questions/new.html', {'questions': page_qlist, 'page': pageN})
 
 def hot(request):
-    ctx = dict()
-    qlist = list()
-    tags = lorem.words(5)
-    for i in range(1,101):
-        shuffle(tags)
-        qlist.append({
-            'idx': i,
-            'title': ' '.join(lorem.words(3)).title(),
-            'text': lorem.sentences(3),
-            'tags': tags[0:2],
-        })
+    qlist = Question.objects.top_questions()
     page_qlist, pageN = paginate(qlist, request)
-    ctx['questions'] = page_qlist
-    ctx['page'] = pageN
-    return render(request, 'hot.html', ctx)
+    return render(request, 'questions/hot.html', {'questions': page_qlist, 'page': pageN})
 
 def tag(request, tag_word):
-    ctx = dict()
-    qlist = list()
-    tags = lorem.words(5)
-    for i in range(1,48):
-        shuffle(tags)
-        qlist.append({
-            'idx': i,
-            'title': ' '.join(lorem.words(3)).title(),
-            'text': lorem.sentences(3),
-            'tags': tags[0:2],
-        })
-    page_qlist, pageN = paginate(qlist, request)
-    ctx['page'] = pageN
-    ctx['questions'] = page_qlist
-    ctx['tag_word'] = tag_word
-    return render(request, 'tag.html', ctx)
+    q_tag_list = Question.objects.questions_tag(tag_word)
+    page_qlist, pageN = paginate(q_tag_list, request)
+    return render(request, 'questions/tag.html', {'questions': page_qlist, 'page': pageN, 'tag_word': tag_word,})
 
 def question_detail(request, question_id):
-    ctx = dict()
-    ctx['q_id'] = question_id
-    answlist = list()
-    qlist = list()
-    tags = lorem.words(5)
-    for i in range(1,6):
-        answlist.append({
-            'idx': i,
-            'text': lorem.sentences(3),
-        })
-    ctx['answers'] = answlist
-    shuffle(tags)
-    qlist.append({
-        'idx': question_id,
-        'title': ' '.join(lorem.words(3)).title,
-        'text': lorem.sentences(3),
-        'tags': tags[0:3],
-    })
-    ctx['question'] = qlist
-    return render(request, 'onequestion.html', ctx)
+    post = get_object_or_404(Question, id=question_id)
+    return render(request, 'questions/question_detail.html', {'post': post,})
 
 def signin(request):
     return render(request, 'signin.html', {'title': 'ASK.me-sign in'})
@@ -124,13 +68,6 @@ def userset(request):
     return render(request, 'userset.html', {'title': 'ASK.me - user settings'})
 
 def ask(request):
-    return render(request, 'ask.html', {'title': 'ASK.me - Ask'})
+    return render(request, 'questions/ask.html', {'title': 'ASK.me - Ask'})
 
 
-
-
-def foo(request):
-    return render(request, 'base.html', {
-        'title': 'Hello Title',
-        'text': 'Some Text222',
-    })

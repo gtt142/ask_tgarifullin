@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&)ap+^d&vjxgngtj6lxx1+q%3fm!*d)15ei9c835pqbo3#98-w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+TEMPLATE_DEBUG = True
 DEBUG = True
 
 ALLOWED_HOSTS = ['backend']
@@ -119,3 +120,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'questions.User'

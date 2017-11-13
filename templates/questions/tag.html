@@ -1,0 +1,43 @@
+{% extends "../base.html" %}
+
+{% block title %}ASK.me - Tag: {{ tag_word }}{% endblock %}
+
+{% block content %}
+
+          <div class="row quest_head">
+            <h1>Tag: {{ tag_word }}</h1>
+            </div>
+            <div class="row" style="margin-left: 20px">
+                Результатов: {{ page.paginator.count }}</div>
+            <div class="row pages"> <h4>
+                <ul>
+                    <li>Сортировать по:</li>
+                    <li><a href="{% url 'tag_detail' tag_word %}?limit=5">5</a></li>
+                    <li><a href="{% url 'tag_detail' tag_word %}?limit=10">10</a></li>
+                    <li><a href="{% url 'tag_detail' tag_word %}?limit=20">20</a></li>
+                </ul></h4></div>
+
+              {% for question in questions %}
+                  {% include "./question.html" %}
+              {% endfor %}
+
+
+          <div class="pages">
+          <ul>
+            <li>
+              {% if page.has_previous %}
+                  <a href="{% url 'tag_detail' tag_word %}?page={{ page.previous_page_number }}&{{ page.paginator.limiturl }}">previous</a>
+              {% endif %}
+            </li>
+            <li>
+                Page {{ page.number }} of {{ page.paginator.num_pages }}
+            </li>
+            <li>
+              {% if page.has_next %}
+                  <a href="{% url 'tag_detail' tag_word %}?page={{ page.next_page_number }}&{{ page.paginator.limiturl }}">next</a>
+              {% endif %}
+          </ul>
+        </div>
+
+
+{% endblock %}

@@ -1,20 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %} Question {{q_id}} {% endblock %}
+{% block title %} {{post.title}} {% endblock %}
 
 {% block content %}
 
         <article class="lmarg20">
-            {% for q in question %} 
             <header>
-              <h1 class="one_question"><u>Заголовок {{ q.idx }}</u></h1>
+              <h1 class="one_question"><u>{{ post.title }}</u></h1>
             </header>
             <div class="row">
               <div class='col-12 col-md-3 quest'>
-                <img src="/static/img/ym8.jpg" width="90%">
-              </div> 
+                <img src="/{{ post.author.upload.url }}" width="90%">
+              </div>
               <div class='col-12 col-md-9'>
-                {{ q.text }}
+                {{ post.text }}
               </div>
             </div>
             <div class="foot">
@@ -24,24 +23,25 @@
                     <form action=" " method="GET">
                       <div class="row rating">
                        <div class="col-md-4 ratCell"><button><img src="/static/img/plus.ico" width="100%"></button></div>
-                       <div class="col-md-4 ratCell">41</div>
+                       <div class="col-md-4 ratCell">{{ post.status.likesNum }}</div>
                        <div class="col-md-4 ratCell"><button><img src="/static/img/minus.ico" width="100%"></button></div>
                       </div>
                     </form>
                   </div>
-                 <div class="col-md-9 col-sm-12">Tags:  {% for tag in q.tags %}
-                              <a href="{% url 'tag_detail' tag %}">{{ tag }}</a>
-                            {% endfor %}</div>
+                 <div class="col-md-9 col-sm-12">Tags:
+                 {% for tag in post.tags.all %}
+                        <u><a href="{% url 'tag_detail' tag.title %}">{{ tag.title }}</a></u>
+                    {% endfor %}
+                 </div>
                 </div>
               </footer>
             </div>
             <hr>
-            {% endfor %}
           </article>
           <div class="answers">
-              
-              {% for answer in answers %}
-                  {% include "answer.html" %}
+
+              {% for answer in post.answer_set.all %}
+                  {% include "./answer.html" %}
               {% endfor %}
 
           </div>
@@ -49,7 +49,7 @@
           <hr class="my_hr">
             <div class="new_answer">
             <form action=" " method="POST">
-             <div class="forma"> 
+             <div class="forma">
               <div class="row regPoint">
                 <div class="col-md-9">
                    <textarea name="comment" cols="100" rows="6" required class="border"></textarea>

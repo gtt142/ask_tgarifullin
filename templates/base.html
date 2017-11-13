@@ -36,7 +36,7 @@
           <a href="{% url 'ask' %}" class="btn-ask">Ask!</a>
         </ul>
       </div>
-      	<div class="col-md-4 col-sm-5">
+      	<div class="col-md-3 col-sm-5">
           <a href="{% url 'signin' %}" class="myLogin">Sign In</a>
           <a href="{% url 'signup' %}" class="myLogin">Sign Up</a>
       	</div>
@@ -53,9 +53,9 @@
         </div><!--/span-->
 		<aside class="col-3 ml-sm-auto blog-sidebar">
           <div class="sidebar-module">
-            <h4>Popular Tags</h4>
+            <u><h4>Popular Tags</h4></u>
             <div>
-            	<a href="{% url 'tag_detail' 'MySLQ'%}" class="secondPlace">MySQL </a>
+            	<a href="{% url 'tag_detail' 'MySQL'%}" class="secondPlace">MySQL </a>
             	<a href="{% url 'tag_detail' 'Python'%}" class="firstPlace">Python </a>
             	<a href="{% url 'tag_detail' 'Django'%}" class="thirdPlace">Django </a>
             	<a href="{% url 'tag_detail' 'TechnoPark'%}" class="otherPlace">TechnoPark </a>
@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="sidebar-module mymarg">
-            <h4>Top Users</h4>
+            <u><h4>Top Users</h4></u>
             <ol class="list-unstyled">
               <li><a href="#">Rust_Skate</a></li>
               <li><a href="#">GTT</a></li>

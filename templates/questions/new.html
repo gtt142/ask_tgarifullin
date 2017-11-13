@@ -9,17 +9,24 @@
             <div class="col-md-3 col-sm-12 HotQ">
             <a href="{% url 'hot' %}">Hot Questions</a>
             </div></div>
+            <div class="row pages"> <h4>
+                <ul>
+                    <li>Сортировать по:</li>
+                    <li><a href="{% url 'index' %}?limit=5">5</a></li>
+                    <li><a href="{% url 'index' %}?limit=10">10</a></li>
+                    <li><a href="{% url 'index' %}?limit=20">20</a></li>
+                </ul></h4>
+            </div>
 
-          
               {% for question in questions %}
-                  {% include "question.html" %}
+                  {% include "./question.html" %}
               {% endfor %}
 
           <div class="pages">
           <ul>
             <li>
               {% if page.has_previous %}
-                  <a href="{% url 'index' %}?page={{ page.previous_page_number }}">previous</a>
+                  <a href="{% url 'index' %}?page={{ page.previous_page_number }}&{{ page.paginator.limiturl }}">previous</a>
               {% endif %}
             </li>
             <li>
@@ -27,7 +34,7 @@
             </li>
             <li>
               {% if page.has_next %}
-                  <a href="{% url 'index' %}?page={{ page.next_page_number }}">next</a>
+                  <a href="{% url 'index' %}?page={{ page.next_page_number }}&{{ page.paginator.limiturl }}">next</a>
               {% endif %}
             </li>
           </ul>
