@@ -2,6 +2,14 @@
             <header>
               <h1><u><a href="{% url 'question_detail' question.id %}">{{ question.title }}</a></u></h1>
             </header>
+            <div class="row " style="margin-left: 30px">
+                <div class="col-md-8 col-sm-12"><u>
+                    {{ question.author.username }}</u>
+                </div>
+                <div class="col-md-4 col-sm-12"><u>
+                    {{ question.create_date|date:"d.m.Y, H:i:s" }}</u>
+                </div>
+            </div>
             <div class="row">
               <div class='col-md-3 col-sm-12 quest_img'>
                   <img src="/{{ question.author.upload.url }}">
@@ -12,7 +20,7 @@
             </div>
             <div class="foot">
               <div class="quest_foot">
-               <div class="row" style="margin-left: 15px">
+               <div class="row" style="margin-left: 30px">
                   <div class="col-md-3 col-sm-12 ">
                     <form action=" " method="POST">
                         {% csrf_token %}

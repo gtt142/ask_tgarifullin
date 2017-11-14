@@ -8,6 +8,14 @@
             <header>
               <h1 class="one_question"><u>{{ post.title }}</u></h1>
             </header>
+            <div class="row " style="margin-left: 30px">
+                <div class="col-md-8 col-sm-12"><u>
+                    {{ post.author.username }}</u>
+                </div>
+                <div class="col-md-4 col-sm-12"><u>
+                    {{ post.create_date|date:"d.m.Y, H:i:s" }}</u>
+                </div>
+            </div>
             <div class="row">
               <div class='col-12 col-md-3 quest'>
                 <img src="/{{ post.author.upload.url }}" width="90%">
@@ -18,7 +26,7 @@
             </div>
             <div class="foot">
               <div class="quest_foot">
-               <div class="row" style="margin-left: 15px; margin-top: 5px; display: flex;">
+               <div class="row" style="margin-left: 30px; margin-top: 5px; display: flex;">
                   <div class="col-md-3 col-sm-12 ">
                     <form action=" " method="POST">
                         {% csrf_token %}

@@ -1,14 +1,21 @@
 from __future__ import unicode_literals
 from django.db import models
 from datetime import datetime
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db.models import Count
 
 # Create your models here.
 
+class MyUserManager(UserManager):
+    def get_top_N(self,N):
+        return self.order_by('-rating')[0:N]
+
+
+
 class User(AbstractUser):
     upload = models.ImageField(upload_to='uploads/%Y/%m/%d/')
     rating = models.IntegerField(default=0, verbose_name=u"Рейтинг")
+    objects = MyUserManager()
 
 
 class QuestionManager(models.Manager):

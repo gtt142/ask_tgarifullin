@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
-from questions.models import Question, Answer, Tag
+from questions.models import Question, Answer, Tag, User
 from django.http import HttpResponse
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -68,6 +68,9 @@ def is_set_like(request):
 def get_top_tags():
     return Tag.objects.get_top_N(5)
 
+def get_top_users():
+    return User.objects.get_top_N(5)
+
 
 # Create your views here.
 
@@ -77,9 +80,11 @@ def index(request):
     page_qlist, pageN = paginate(qlist, request)
     is_set_like(request)
     tag_list = get_top_tags()
+    user_list = get_top_users()
     ctx['questions'] = page_qlist
     ctx['page'] = pageN
     ctx['tag_list'] = tag_list
+    ctx['user_list'] = user_list
     return render(request, 'new.html', ctx)
 
 def hot(request):

@@ -63,9 +63,9 @@
           <div class="sidebar-module mymarg">
             <u><h4>Top Users</h4></u>
             <ol class="list-unstyled">
-              <li><a href="#">Rust_Skate</a></li>
-              <li><a href="#">GTT</a></li>
-              <li><a href="#">WhiteDem0n</a></li>
+                {% for user in user_list %}
+                    <li><a href="#">{{ user.username }}</a></li>
+                {% endfor %}
             </ol>
           </div>
         </aside>
