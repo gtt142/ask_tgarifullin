@@ -30,6 +30,6 @@ urlpatterns = [
     url(r'^question/', include('questions.urls')),
     url(r'^userset/', views.userset, name='userset'),
     url(r'^ask/', views.ask, name='ask'),
-    url(r'^tag/(?P<tag_word>\w+)/$', views.tag, name='tag_detail'),
+    url(r'^tag/(?P<tag_word>(\w|(\+|#|\-)+)+)/$', views.tag, name='tag_detail'),
     url(r'^', err404),
 ]

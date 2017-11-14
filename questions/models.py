@@ -2,11 +2,13 @@ from __future__ import unicode_literals
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
+from django.db.models import Count
 
 # Create your models here.
 
 class User(AbstractUser):
     upload = models.ImageField(upload_to='uploads/%Y/%m/%d/')
+    rating = models.IntegerField(default=0, verbose_name=u"Рейтинг")
 
 
 class QuestionManager(models.Manager):
@@ -15,7 +17,13 @@ class QuestionManager(models.Manager):
     def new_questions(self):
         return self.filter(is_active=True).order_by('-create_date')
     def questions_tag(self, tag_word):
-        return self.filter(is_active=True, tags__title__iexact=tag_word)
+        return self.filter(is_active=True, tags__title__iexact=tag_word).order_by('-status__likesNum')
+    def set_like(self, q_id, d_like):
+        obj = Question.objects.get(id=q_id)
+        stat = obj.status
+        oldLikesNum = stat.likesNum
+        stat.likesNum = oldLikesNum + d_like
+        stat.save()
 
 
 class Category(models.Model):
@@ -25,8 +33,14 @@ class Category(models.Model):
         return self.title
 
 
+class TagManager(models.Manager):
+    def get_top_N(self,N):
+        return self.values('title').annotate(num_questions=Count('question')).order_by('-num_questions')[0:N]
+
+
 class Tag(models.Model):
     title = models.CharField(max_length=120, unique=True, verbose_name=u"Заголовок тега")
+    objects = TagManager()
 
     def __str__(self):
         return self.title
@@ -55,6 +69,13 @@ class Question(models.Model):
         ordering = ['-create_date']
 
 
+class AnswerManager(models.Manager):
+    def set_like(self, a_id, d_like):
+        obj = Answer.objects.get(id=a_id)
+        oldRating = obj.rating
+        obj.rating = oldRating + d_like
+        obj.save()
+
 
 class Answer(models.Model):
     author = models.ForeignKey(User)
@@ -64,4 +85,4 @@ class Answer(models.Model):
     is_correct = models.BooleanField(default=False, verbose_name=u"Правильность ответа")
     question = models.ForeignKey(Question)
     rating = models.IntegerField(default=0, verbose_name=u"Рейтинг")
-
+    objects = AnswerManager()

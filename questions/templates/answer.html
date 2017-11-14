@@ -12,11 +12,14 @@
               <div class="quest_foot">
                <div class="row" style="margin-left: 15px; margin-top: 5px; display: flex;">
                   <div class="col-md-3 col-sm-12 ">
-                    <form action=" " method="GET">
+                    <form action=" " method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ answer.id }}">
+                        <input type="hidden" name="type" value="answer">
                       <div class="row rating">
-                       <div class="col-md-4 ratCell"><button><img src="/static/img/plus.ico" width="100%"></button></div>
+                       <div class="col-md-4 ratCell"><button name="like" value="m"><img src="/static/img/minus.ico" width="100%"></button></div>
                        <div class="col-md-4 ratCell">{{ answer.rating }}</div>
-                       <div class="col-md-4 ratCell"><button><img src="/static/img/minus.ico" width="100%"></button></div>
+                       <div class="col-md-4 ratCell"><button name="like" value="p"><img src="/static/img/plus.ico" width="100%"></button></div>
                       </div>
                     </form>
                   </div>

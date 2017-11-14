@@ -55,13 +55,9 @@
           <div class="sidebar-module">
             <u><h4>Popular Tags</h4></u>
             <div>
-            	<a href="{% url 'tag_detail' 'MySQL'%}" class="secondPlace">MySQL </a>
-            	<a href="{% url 'tag_detail' 'Python'%}" class="firstPlace">Python </a>
-            	<a href="{% url 'tag_detail' 'Django'%}" class="thirdPlace">Django </a>
-            	<a href="{% url 'tag_detail' 'TechnoPark'%}" class="otherPlace">TechnoPark </a>
-            	<a href="{% url 'tag_detail' 'BMSTU'%}" class="otherPlace">BMSTU </a>
-            	<a href="{% url 'tag_detail' 'CSS'%}" class="otherPlace">CSS </a>
-            	<a href="{% url 'tag_detail' 'Linux'%}" class="otherPlace">Linux </a>
+                {% for tagg in tag_list %}
+                    <a href="{% url 'tag_detail' tagg.title %}" class="otherPlace">{{ tagg.title }}({{ tagg.num_questions }}) </a>
+                {% endfor %}
             </div>
           </div>
           <div class="sidebar-module mymarg">

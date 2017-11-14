@@ -14,11 +14,14 @@
               <div class="quest_foot">
                <div class="row" style="margin-left: 15px">
                   <div class="col-md-3 col-sm-12 ">
-                    <form action=" " method="GET">
+                    <form action=" " method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ question.id }}">
+                        <input type="hidden" name="type" value="question">
                       <div class="row rating">
-                       <div class="col-4 ratCell"><button><img src="/static/img/plus.ico" width="100%"></button></div>
+                       <div class="col-4 ratCell"><button name="like" value="m"><img src="/static/img/minus.ico" width="100%"></button></div>
                        <div class="col-4 ratCell">{{ question.status.likesNum }}</div>
-                       <div class="col-4 ratCell"><button><img src="/static/img/minus.ico" width="100%"></button></div>
+                       <div class="col-4 ratCell"><button name="like" value="p"><img src="/static/img/plus.ico" width="100%"></button></div>
                       </div>
                     </form>
                   </div>
