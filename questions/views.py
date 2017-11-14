@@ -47,21 +47,21 @@ def paginate(objects, request):
 def index(request):
     qlist = Question.objects.new_questions()
     page_qlist, pageN = paginate(qlist, request)
-    return render(request, 'questions/new.html', {'questions': page_qlist, 'page': pageN})
+    return render(request, 'new.html', {'questions': page_qlist, 'page': pageN})
 
 def hot(request):
     qlist = Question.objects.top_questions()
     page_qlist, pageN = paginate(qlist, request)
-    return render(request, 'questions/hot.html', {'questions': page_qlist, 'page': pageN})
+    return render(request, 'hot.html', {'questions': page_qlist, 'page': pageN})
 
 def tag(request, tag_word):
     q_tag_list = Question.objects.questions_tag(tag_word)
     page_qlist, pageN = paginate(q_tag_list, request)
-    return render(request, 'questions/tag.html', {'questions': page_qlist, 'page': pageN, 'tag_word': tag_word,})
+    return render(request, 'tag.html', {'questions': page_qlist, 'page': pageN, 'tag_word': tag_word,})
 
 def question_detail(request, question_id):
     post = get_object_or_404(Question, id=question_id)
-    return render(request, 'questions/question_detail.html', {'post': post,})
+    return render(request, 'question_detail.html', {'post': post,})
 
 def signin(request):
     return render(request, 'signin.html', {'title': 'ASK.me-sign in'})
@@ -76,6 +76,6 @@ def userset(request):
     return render(request, 'userset.html', {'title': 'ASK.me - user settings'})
 
 def ask(request):
-    return render(request, 'questions/ask.html', {'title': 'ASK.me - Ask'})
+    return render(request, 'ask.html', {'title': 'ASK.me - Ask'})
 
 
