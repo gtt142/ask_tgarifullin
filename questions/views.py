@@ -10,12 +10,20 @@ from faker import lorem
 from random import shuffle
 
 def test_gu(request):
-    msg = ' '
+    text_lst = []
+    msg = ''
     if request.method == 'GET':
-        msg = request.GET.get('test', '')
+        req_lists = request.GET.lists()
     if request.method == 'POST':
-        msg = request.POST.get('test', '')
-    return render(request, 'test_gu.html', {'text': msg})
+        req_lists = request.POST.lists()
+    for key, lst in req_lists:
+        if key == 'csrfmiddlewaretoken':
+            continue
+        for word in lst:
+            msg = msg + key + '=' + word
+            text_lst.append(msg)
+            msg = ''
+    return render(request, 'test_gu.html', {'text': text_lst})
 
 
 

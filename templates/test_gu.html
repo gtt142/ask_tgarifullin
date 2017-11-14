@@ -7,10 +7,12 @@
 <body>
     <h1>Привет, мир!</h1>
     <br><br>
-    {{ text }}
+    {% for msg in text %} {{ msg }}<br> {% endfor %}
     <br><br><br><br>
     Post:
     <form method="POST">
+        <input type="text" name = "test">
+        <input type="text" name = "test2">
         <input type="text" name = "test">
         {% csrf_token %}
         <input type="submit" value="Send">
