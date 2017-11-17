@@ -13,7 +13,7 @@ class MyUserManager(UserManager):
 
 
 class User(AbstractUser):
-    upload = models.ImageField(upload_to='uploads/%Y/%m/%d/')
+    upload = models.ImageField(default='static/img/ava.png', upload_to='uploads/%Y/%m/%d/')
     rating = models.IntegerField(default=0, verbose_name=u"Рейтинг")
     objects = MyUserManager()
 

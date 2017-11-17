@@ -81,10 +81,10 @@ def index(request):
     is_set_like(request)
     tag_list = get_top_tags()
     user_list = get_top_users()
+    ctx['user_list'] = user_list
     ctx['questions'] = page_qlist
     ctx['page'] = pageN
     ctx['tag_list'] = tag_list
-    ctx['user_list'] = user_list
     return render(request, 'new.html', ctx)
 
 def hot(request):
@@ -93,6 +93,8 @@ def hot(request):
     page_qlist, pageN = paginate(qlist, request)
     is_set_like(request)
     tag_list = get_top_tags()
+    user_list = get_top_users()
+    ctx['user_list'] = user_list
     ctx['questions'] = page_qlist
     ctx['page'] = pageN
     ctx['tag_list'] = tag_list
@@ -104,6 +106,8 @@ def tag(request, tag_word):
     is_set_like(request)
     page_qlist, pageN = paginate(q_tag_list, request)
     tag_list = get_top_tags()
+    user_list = get_top_users()
+    ctx['user_list'] = user_list
     ctx['questions'] = page_qlist
     ctx['page'] = pageN
     ctx['tag_list'] = tag_list
@@ -115,6 +119,8 @@ def question_detail(request, question_id):
     post = get_object_or_404(Question, id=question_id)
     is_set_like(request)
     tag_list = get_top_tags()
+    user_list = get_top_users()
+    ctx['user_list'] = user_list
     ctx['post'] = post
     ctx['tag_list'] = tag_list
     return render(request, 'question_detail.html', ctx)
@@ -122,6 +128,8 @@ def question_detail(request, question_id):
 def signin(request):
     ctx = dict()
     tag_list = get_top_tags()
+    user_list = get_top_users()
+    ctx['user_list'] = user_list
     ctx['title'] = 'ASK.me-sign in'
     ctx['tag_list'] = tag_list
     return render(request, 'signin.html', ctx)
@@ -129,6 +137,8 @@ def signin(request):
 def signup(request):
     ctx = dict()
     tag_list = get_top_tags()
+    user_list = get_top_users()
+    ctx['user_list'] = user_list
     ctx['title'] = 'ASK.me-sign up'
     ctx['tag_list'] = tag_list
     return render(request, 'signup.html', ctx)
@@ -139,6 +149,8 @@ def signup(request):
 def userset(request):
     ctx = dict()
     tag_list = get_top_tags()
+    user_list = get_top_users()
+    ctx['user_list'] = user_list
     ctx['title'] = 'ASK.me-user settings'
     ctx['tag_list'] = tag_list
     return render(request, 'userset.html', ctx)
@@ -146,6 +158,9 @@ def userset(request):
 def ask(request):
     ctx = dict()
     tag_list = get_top_tags()
+    user_list = get_top_users()
+    
+    ctx['user_list'] = user_list
     ctx['title'] = 'ASK.me-Ask'
     ctx['tag_list'] = tag_list
     return render(request, 'ask.html', ctx)
