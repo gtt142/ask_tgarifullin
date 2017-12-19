@@ -1,29 +1,46 @@
 {% extends "base.html" %}
-
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 
           <div class="new_quest">
             <h1>New Question</h1>
+              {% for e in form.non_field_errors %}
+                <div class="alert alert-danger">
+                {{ e }}
+                </div>
+            {% endfor %}
             <form action=" " method="POST">
-             <div class="forma"> 
-              <div class="row regPoint">
-                <div class="col-md-3">Title:</div>
-                <div class="col-md-9">
-                  <input class="border" type="text" name="title" required size="50" maxlength="20">
-                </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-3">Text:</div>
-                <div class="col-md-9">
-                   <textarea name="comment" cols="60" rows="6" required class="border" maxlength="500"></textarea>
-                </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-3">Tags:</div>
-                <div class="col-md-9">
-                  <input class="border" type="text" required name="tags" size="50" maxlength="10">
-                </div>
-              </div>
+             <div class="forma">
+                 {% for field in form %}
+                    <div class = "row regPoint
+                    {% if field.errors %} has-error {% endif %}">
+                    <div class="col-md-1"></div>
+                    <div class="col-2 control-label">{{ field.label }}</div>
+
+                        <div class="col-7 controls">{{ field }}</div>
+                    </div>
+                      {% if field.errors %}
+                            <div class="row has-error regPoint control-label">{{ field.errors.as_text }}</div>
+                        {% endif %}
+                 {% endfor %}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">Title:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="text" name="title" required size="50" maxlength="20">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">Text:</div>#}
+{#                <div class="col-md-9">#}
+{#                   <textarea name="comment" cols="60" rows="6" required class="border" maxlength="500"></textarea>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">Tags:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="text" required name="tags" size="50" maxlength="10">#}
+{#                </div>#}
+{#              </div>#}
                  {% csrf_token %}
               <div class="questButt">
                 <button class="submit">

@@ -5,22 +5,38 @@
 {% block content %}
           <div class="new_quest">
             <h1>Sign In</h1>
+            {% for e in form.non_field_errors %}
+                <div class="alert alert-danger">
+                {{ e }}
+                </div>
+            {% endfor %}
             <form action=" " method="POST">
-             <div class="forma"> 
-              <div class="row regPoint">
-                <div class="col-md-1"></div>
-                <div class="col-md-2">Login:</div>
-                <div class="col-md-9">
-                  <input class="border" type="text" name="login" required size="30" maxlength="10">
-                </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-1"></div>
-                <div class="col-md-2">Password:</div>
-                <div class="col-md-9">
-                  <input class="border" type="password" name="password" required size="30" maxlength="10">
-                </div>
-              </div>
+             <div class="forma">
+                 {% for field in form %}
+                    <div class = "row regPoint
+                    {% if field.errors %} has-error {% endif %}">
+                    <div class="col-md-1"></div>
+                    <div class="col-2 control-label">{{ field.label }}</div>
+                    <div class="col-9 controls">{{ field }}</div>
+                    </div>
+                                           {% if field.errors %}
+                            <div class="row has-error regPoint control-label">{{ field.errors.as_text }}</div>
+                        {% endif %}
+                 {% endfor %}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-1"></div>#}
+{#                <div class="col-md-2">Login:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="text" name="username" required size="30" maxlength="10">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-1"></div>#}
+{#                <div class="col-md-2">Password:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="password" name="password" required size="30" maxlength="10">#}
+{#                </div>#}
+{#              </div>#}
       {% csrf_token %}
               <div class="questButt">
                 <button class="submit">

@@ -4,44 +4,60 @@
 
           <div class="new_quest">
             <h1>Registration</h1>
-            <form action=" " method="POST">
-             <div class="forma"> 
-              <div class="row regPoint">
-                <div class="col-md-3">Login:</div>
-                <div class="col-md-9">
-                  <input class="border" type="text" name="login" required size="30" maxlength="20">
+              {% for e in form.non_field_errors %}
+                <div class="alert alert-danger">
+                {{ e }}
                 </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-3">E-mail:</div>
-                <div class="col-md-9">
-                  <input class="border" type="text" name="email" required size="30" maxlength="30">
-                </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-3">NickName:</div>
-                <div class="col-md-9">
-                  <input class="border" type="text" name="nick" required size="30" maxlength="20">
-                </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-3">Password:</div>
-                <div class="col-md-9">
-                  <input class="border" type="password" name="password1" required size="30" maxlength="30">
-                </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-3">Repeat password:</div>
-                <div class="col-md-9">
-                  <input class="border" type="password" name="password2" required size="30" maxlength="30">
-                </div>
-              </div>
-              <div class="row regPoint">
-                <div class="col-md-3">Upload avatar:</div>
-                <div class="col-md-9">
-                  <input class="border" type="file" name="avatar_upl" accept="image/*,image/jpeg">
-                </div>
-              </div>
+            {% endfor %}
+            <form action=" " method="POST" enctype="multipart/form-data">
+             <div class="forma">
+                 {% for field in form %}
+                    <div class = "row regPoint
+                    {% if field.errors %} has-error {% endif %}">
+                    <div class="col-md-1"></div>
+                    <div class="col-2 control-label">{{ field.label }}</div>
+                    <div class="col-9 controls">{{ field }}</div>
+                    </div>
+                                           {% if field.errors %}
+                            <div class="row has-error regPoint control-label">{{ field.errors.as_text }}</div>
+                        {% endif %}
+                 {% endfor %}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">Login:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="text" name="login" required size="30" maxlength="20">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">E-mail:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="text" name="email" required size="30" maxlength="30">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">NickName:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="text" name="nick" required size="30" maxlength="20">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">Password:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="password" name="password1" required size="30" maxlength="30">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">Repeat password:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="password" name="password2" required size="30" maxlength="30">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="row regPoint">#}
+{#                <div class="col-md-3">Upload avatar:</div>#}
+{#                <div class="col-md-9">#}
+{#                  <input class="border" type="file" name="avatar_upl" accept="image/*,image/jpeg">#}
+{#                </div>#}
+{#              </div>#}
             {% csrf_token %}
               <div class="questButt">
                 <button class="submit">

@@ -26,10 +26,12 @@ urlpatterns = [
     url(r'^hot/$', views.hot, name='hot'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^signin/$', views.signin, name='signin'),
+    url(r'^logout/$', views.logout, name='logout'),
     url(r'^admin/', admin.site.urls),
     url(r'^question/', include('questions.urls')),
     url(r'^userset/', views.userset, name='userset'),
     url(r'^ask/', views.ask, name='ask'),
+    # url(r'^profile/', views.profile, name='profile'),
     url(r'^tag/(?P<tag_word>(\w|(\+|#|\-)+)+)/$', views.tag, name='tag_detail'),
     url(r'^', err404),
 ]

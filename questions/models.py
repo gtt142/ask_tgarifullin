@@ -13,7 +13,7 @@ class MyUserManager(UserManager):
 
 
 class User(AbstractUser):
-    upload = models.ImageField(default='static/img/ava.png', upload_to='uploads/%Y/%m/%d/')
+    upload = models.ImageField(default='static/img/ava.png', upload_to='%Y/%m/%d/', verbose_name=u"Аватар")
     rating = models.IntegerField(default=0, verbose_name=u"Рейтинг")
     objects = MyUserManager()
 
@@ -65,7 +65,7 @@ class Question(models.Model):
     create_date = models.DateTimeField(default=datetime.now, verbose_name=u"Время создания вопроса")
     is_active = models.BooleanField(default=True, verbose_name=u"Доступность вопроса")
     tags = models.ManyToManyField(Tag, blank=True)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, blank=True)
     status = models.OneToOneField(Status)
     objects = QuestionManager()
 

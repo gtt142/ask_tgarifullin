@@ -146,6 +146,11 @@ div.inp {
 	border-width: 5px;
 	border-radius: 10px;
 }
+
+.has-error {
+	color: red;
+}
+
 div.newQ {
 	font-style: "Times";
 	margin: 15px;
